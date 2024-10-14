@@ -15,7 +15,7 @@ const FileUploads = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:9000/files/upload",
+          "https://trrip-backend.onrender.com/files/upload",
           formData,
           {
             headers: {
@@ -36,7 +36,7 @@ const FileUploads = () => {
   const handleDownloadFile = async (filename) => {
     try {
       const response = await axios.get(
-        `http://localhost:9000/files/${filename}`,
+        `https://trrip-backend.onrender.com/files/${filename}`,
         {
           responseType: "blob", // Indicate that the file is binary data
         }
@@ -59,7 +59,9 @@ const FileUploads = () => {
   // Fetch files from the API
   const fetchFiles = async () => {
     try {
-      const response = await axios.get("http://localhost:9000/files");
+      const response = await axios.get(
+        "https://trrip-backend.onrender.com/files"
+      );
       setFiles(response.data); // Assume response contains a list of files
     } catch (error) {
       console.error("Error fetching files:", error);
@@ -69,7 +71,9 @@ const FileUploads = () => {
   // Function to remove a file
   const handleRemoveFile = async (filename) => {
     try {
-      await axios.delete(`http://localhost:9000/files/${filename}`);
+      await axios.delete(
+        `https://trrip-backend.onrender.com/files/${filename}`
+      );
       fetchFiles(); // Update the list after deletion
     } catch (error) {
       console.error("Error removing file:", error);

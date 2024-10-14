@@ -9,7 +9,9 @@ const Weather = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       setLoading(true);
-      const response = await fetch(`http://localhost:9000/weather`);
+      const response = await fetch(
+        `https://trrip-backend.onrender.com/weather`
+      );
       const data = await response.json();
       setWeather(data);
       setLoading(false);

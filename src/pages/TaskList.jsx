@@ -15,7 +15,9 @@ const TaskList = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await axios.get("http://localhost:9000/tasks");
+        const response = await axios.get(
+          "https://trrip-backend.onrender.com/tasks"
+        );
         setTasks(response.data);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -30,11 +32,14 @@ const TaskList = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:9000/tasks", {
-        task: newTaskTitle,
-        isCompleted: false,
-        dueDate: null,
-      });
+      const response = await axios.post(
+        "https://trrip-backend.onrender.com/tasks",
+        {
+          task: newTaskTitle,
+          isCompleted: false,
+          dueDate: null,
+        }
+      );
       setTasks([...tasks, response.data]);
       setNewTaskTitle(""); // Clear input field
     } catch (error) {
@@ -54,7 +59,7 @@ const TaskList = () => {
     }
     try {
       const response = await axios.put(
-        `http://localhost:9000/tasks/${editingTask._id}`,
+        `https://trrip-backend.onrender.com/tasks/${editingTask._id}`,
         {
           task: editingTaskTitle,
           isCompleted: editingTask.isCompleted,
@@ -72,7 +77,7 @@ const TaskList = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:9000/tasks/${id}`);
+      await axios.delete(`https://trrip-backend.onrender.com/tasks/${id}`);
       setTasks(tasks.filter((task) => task._id !== id));
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -83,7 +88,7 @@ const TaskList = () => {
     try {
       const updatedTask = { ...task, isCompleted: !task.isCompleted };
       const response = await axios.put(
-        `http://localhost:9000/tasks/${task._id}`,
+        `https://trrip-backend.onrender.com/tasks/${task._id}`,
         updatedTask
       );
       setTasks(tasks.map((t) => (t._id === task._id ? response.data : t)));

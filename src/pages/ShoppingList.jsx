@@ -19,7 +19,9 @@ const ShoppingList = () => {
   // Fetch items from API
   const fetchItems = async () => {
     try {
-      const response = await axios.get("http://localhost:9000/items");
+      const response = await axios.get(
+        "https://trrip-backend.onrender.com/items"
+      );
       setItems(response.data);
     } catch (error) {
       console.error("Error fetching items:", error);
@@ -40,7 +42,10 @@ const ShoppingList = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:9000/items", newItem);
+      const response = await axios.post(
+        "https://trrip-backend.onrender.com/items",
+        newItem
+      );
       setItems([...items, response.data]);
       setNewItemName("");
       setNewItemQuantity("");
@@ -52,7 +57,7 @@ const ShoppingList = () => {
   // Delete an item
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:9000/items/${id}`);
+      await axios.delete(`https://trrip-backend.onrender.com/items/${id}`);
       setItems(items.filter((item) => item._id !== id));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -77,7 +82,7 @@ const ShoppingList = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:9000/items/${currentItemId}`,
+        `https://trrip-backend.onrender.com/items/${currentItemId}`,
         updatedItem
       );
       setItems(
@@ -99,7 +104,7 @@ const ShoppingList = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:9000/items/${id}`,
+        `https://trrip-backend.onrender.com/items/${id}`,
         updatedItem
       );
       setItems(items.map((item) => (item._id === id ? response.data : item)));
