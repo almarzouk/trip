@@ -86,7 +86,7 @@ const FileUploads = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 text-white p-8">
-      <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg p-8 w-full max-w-4xl">
+      <div className="bg-indigo-600 backdrop-blur-md rounded-xl shadow-lg p-8 w-full max-w-4xl">
         <h1 className="text-3xl font-bold text-center mb-6 text-white">
           Uploaded Files
         </h1>
