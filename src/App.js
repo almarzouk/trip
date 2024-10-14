@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import ShoppingList from "./pages/ShoppingList";
+import TaskList from "./pages/TaskList";
+import Weather from "./pages/Weather";
+import FileUploads from "./pages/FileUploads";
+import WelcomePage from "./pages/Welcome";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="flex h-screen">
+        <Sidebar />
+        <div className="flex-grow bg-gray-800 text-white">
+          <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/shopping-list" element={<ShoppingList />} />
+            <Route path="/tasks" element={<TaskList />} />
+            <Route path="/weather" element={<Weather />} />
+            <Route path="/files" element={<FileUploads />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
