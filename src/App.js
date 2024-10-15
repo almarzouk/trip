@@ -5,7 +5,7 @@ import ShoppingList from "./pages/ShoppingList";
 import TaskList from "./pages/TaskList";
 import Weather from "./pages/Weather";
 import FileUploads from "./pages/FileUploads";
-import WelcomePage from "./pages/Welcome";
+import TripTimeline from "./pages/TripTimeline";
 
 const App = () => {
   return (
@@ -13,13 +13,7 @@ const App = () => {
       <div className="flex h-screen">
         <Sidebar />
         <div className="flex-grow bg-gray-800 text-white">
-          <Routes>
-            <Route path="/" element={<WelcomePage />} />
-            <Route path="/shopping-list" element={<ShoppingList />} />
-            <Route path="/tasks" element={<TaskList />} />
-            <Route path="/weather" element={<Weather />} />
-            <Route path="/files" element={<FileUploads />} />
-          </Routes>
+          <TripTimeline />
         </div>
       </div>
     </Router>

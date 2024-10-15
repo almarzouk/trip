@@ -126,118 +126,67 @@ const ShoppingList = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 text-white p-8">
-      <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg p-8 w-full max-w-4xl text-center">
-        <h1 className="text-4xl font-bold mb-6">Shopping List</h1>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 text-white p-4 sm:p-8">
+      <div className="bg-white bg-opacity-20 backdrop-blur-md rounded-xl shadow-lg p-4 sm:p-8 w-full max-w-xs sm:max-w-4xl text-center">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">
+          Shopping List
+        </h1>
 
         {/* Add New Item Section */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold mb-4">Add New Item</h2>
-          <div className="flex justify-center space-x-4">
+        <div className="mb-4 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">
+            Add New Item
+          </h2>
+          <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
             <input
               type="text"
               value={newItemName}
               onChange={(e) => setNewItemName(e.target.value)}
-              className="border border-gray-300 rounded-lg p-3 w-1/2 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
+              className="border border-gray-300 rounded-lg p-2 w-full sm:w-1/2 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
               placeholder="Item Name"
             />
             <input
               type="number"
               value={newItemQuantity}
               onChange={(e) => setNewItemQuantity(e.target.value)}
-              className="border border-gray-300 rounded-lg p-3 w-1/4 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
+              className="border border-gray-300 rounded-lg p-2 w-full sm:w-1/4 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
               placeholder="Quantity"
             />
             <button
               onClick={handleAddItem}
-              className="bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600 transition duration-200"
+              className="bg-green-500 text-white rounded-lg p-2 hover:bg-green-600 transition duration-200"
             >
               Add Item
             </button>
           </div>
         </div>
 
-        {/* Edit Item Section */}
-        {isEditing && (
-          <div className="mb-8">
-            <h2 className="text-xl font-semibold mb-4">Edit Item</h2>
-            <div className="flex justify-center space-x-4">
-              <input
-                type="text"
-                value={currentItemName} // Ensure the input is controlled
-                onChange={(e) => setCurrentItemName(e.target.value)}
-                className="border border-gray-300 rounded-lg p-3 w-1/2 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
-                placeholder="Item Name"
-              />
-              <input
-                type="number"
-                value={currentItemQuantity} // Ensure the input is controlled
-                onChange={(e) => setCurrentItemQuantity(e.target.value)}
-                className="border border-gray-300 rounded-lg p-3 w-1/4 bg-white bg-opacity-30 placeholder-gray-300 text-gray-800"
-                placeholder="Quantity"
-              />
-              <button
-                onClick={handleUpdate} // Call update function
-                className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 transition duration-200"
-              >
-                Update Item
-              </button>
-              <button
-                onClick={resetEditForm}
-                className="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 transition duration-200"
-              >
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Shopping List Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white bg-opacity-20 text-gray-800 rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-gray-800 text-white">
-                <th className="py-3 px-6 text-left">Item</th>
-                <th className="py-3 px-6 text-left">Quantity</th>
-                <th className="py-3 px-6 text-left">Actions</th>
+                <th className="py-2 px-3 sm:py-3 sm:px-6 text-left">Item</th>
+                <th className="py-2 px-3 sm:py-3 sm:px-6 text-left">
+                  Quantity
+                </th>
+                <th className="py-2 px-3 sm:py-3 sm:px-6 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
               {items.map((item) => (
                 <tr
                   key={item._id}
-                  className={`border-b border-gray-300 hover:bg-gray-100 ${
-                    item.isPurchased ? "bg-green-100" : ""
-                  }`}
+                  className="border-b border-gray-300 hover:bg-gray-100"
                 >
-                  <td className="py-3 px-6">{item.name}</td>
-                  <td className="py-3 px-6">{item.quantity}</td>
-                  <td className="py-3 px-6">
-                    <button
-                      onClick={() => togglePurchased(item._id)}
-                      className={`py-1 px-3 rounded mr-2 transition duration-200 ${
-                        item.isPurchased
-                          ? "bg-red-500 hover:bg-red-600 text-white"
-                          : "bg-green-500 hover:bg-green-600 text-white"
-                      }`}
-                    >
-                      {item.isPurchased ? (
-                        <MdOutlineRemoveShoppingCart className="text-lg" />
-                      ) : (
-                        <FiShoppingCart className="text-lg" />
-                      )}
-                    </button>
-                    <button
-                      onClick={() => handleEdit(item)}
-                      className="bg-orange-500 hover:bg-orange-600 text-white py-1 px-3 rounded transition duration-200"
-                    >
-                      <FaRegEdit className="text-lg" />
-                    </button>
+                  <td className="py-2 px-3 sm:py-3 sm:px-6">{item.name}</td>
+                  <td className="py-2 px-3 sm:py-3 sm:px-6">{item.quantity}</td>
+                  <td className="py-2 px-3 sm:py-3 sm:px-6">
                     <button
                       onClick={() => handleDelete(item._id)}
-                      className="bg-red-500 hover:bg-red-600 text-white py-1 px-3 rounded transition duration-200"
+                      className="text-red-500 hover:text-red-700"
                     >
-                      <RiDeleteBin6Line className="text-lg" />
+                      Remove
                     </button>
                   </td>
                 </tr>

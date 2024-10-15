@@ -85,17 +85,17 @@ const FileUploads = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 text-white p-8">
-      <div className="bg-indigo-600 backdrop-blur-md rounded-xl shadow-lg p-8 w-full max-w-4xl">
-        <h1 className="text-3xl font-bold text-center mb-6 text-white">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-400 to-purple-500 text-white p-4 sm:p-8">
+      <div className="bg-indigo-600 backdrop-blur-md rounded-xl shadow-lg p-4 sm:p-8 w-full max-w-xs sm:max-w-4xl">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center mb-4 sm:mb-6 text-white">
           Uploaded Files
         </h1>
 
-        <div className="mb-6 flex justify-center">
+        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
           <input
             type="file"
             onChange={handleFileUpload}
-            className="block w-full max-w-md px-4 py-2 text-white bg-indigo-600 rounded-md shadow-md cursor-pointer hover:bg-indigo-700 transition duration-200"
+            className="block w-full max-w-xs sm:max-w-md px-3 py-2 sm:px-4 sm:py-2 text-white bg-indigo-600 rounded-md shadow-md cursor-pointer hover:bg-indigo-700 transition duration-200"
           />
         </div>
 
@@ -103,9 +103,9 @@ const FileUploads = () => {
           <table className="min-w-full bg-white bg-opacity-20 backdrop-blur-md rounded-lg shadow-lg text-white">
             <thead>
               <tr className="bg-white bg-opacity-30">
-                <th className="p-4 text-left">File Name</th>
-                <th className="p-4 text-left">Size (KB)</th>
-                <th className="p-4 text-left">Actions</th>
+                <th className="p-2 sm:p-4 text-left">File Name</th>
+                <th className="p-2 sm:p-4 text-left">Size (KB)</th>
+                <th className="p-2 sm:p-4 text-left">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -115,27 +115,29 @@ const FileUploads = () => {
                     key={index}
                     className="hover:bg-white hover:bg-opacity-10 transition duration-200"
                   >
-                    <td className="p-4">{file.name}</td>
-                    <td className="p-4">{(file.size / 1024).toFixed(2)}</td>
-                    <td className="p-4">
+                    <td className="p-2 sm:p-4">{file.name}</td>
+                    <td className="p-2 sm:p-4">
+                      {(file.size / 1024).toFixed(2)}
+                    </td>
+                    <td className="p-2 sm:p-4">
                       <button
                         onClick={() => handleDownloadFile(file.name)}
-                        className="bg-blue-500 text-white px-3 py-1 rounded-md shadow-md hover:bg-blue-600 transition duration-200 mr-2"
+                        className="bg-blue-500 text-white p-1 sm:p-2 rounded-md shadow-md hover:bg-blue-600 transition duration-200 mr-1 sm:mr-2"
                       >
-                        <FaFileDownload className="text-lg" />
+                        <FaFileDownload className="text-base sm:text-lg" />
                       </button>
                       <button
                         onClick={() => handleRemoveFile(file.name)}
-                        className="bg-red-500 text-white px-3 py-1 rounded-md shadow-md hover:bg-red-600 transition duration-200"
+                        className="bg-red-500 text-white p-1 sm:p-2 rounded-md shadow-md hover:bg-red-600 transition duration-200"
                       >
-                        <MdDelete className="text-lg" />
+                        <MdDelete className="text-base sm:text-lg" />
                       </button>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="3" className="text-center p-4 text-white">
+                  <td colSpan="3" className="text-center p-2 sm:p-4 text-white">
                     No files uploaded yet.
                   </td>
                 </tr>
@@ -147,5 +149,4 @@ const FileUploads = () => {
     </div>
   );
 };
-
 export default FileUploads;
